@@ -27,10 +27,6 @@
         </activity>
         <activity android:name=".SplashScreen" />
         <activity
-            android:name=".OwnerView"
-            android:label="@string/title_activity_onwer_view"
-            android:theme="@style/AppTheme" />
-        <activity
             android:name=".OwnerView2"
             android:label="@string/title_activity_owner_view2" />
         <activity android:name=".DashBoard" />
