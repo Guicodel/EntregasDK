@@ -77,9 +77,28 @@ public class OrderConfirmationActivity extends AppCompatActivity implements OnMa
         makeOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createOrder();
+                if(OrderBase.getOrdersTam()>1) {
+                    createOrder();
+                }
+                else{
+                    AlertDialog alertDialog = new AlertDialog.Builder(OrderConfirmationActivity.this).create();
+                    String msn = "No selecciono ningun producto";
+                    alertDialog.setTitle("No se puede realizar el pedido");
+                    alertDialog.setMessage(msn);
+                    alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();goBack();
+                                }
+                            });
+                    alertDialog.show();
+                }
             }
         });
+    }
+    public void goBack()
+    {
+        this.finish();
     }
     public void loadDataFromOrders(){
         ADAPTER=new CustomAdapterOrder(this,OrderBase.getOrders());
@@ -93,6 +112,7 @@ public class OrderConfirmationActivity extends AppCompatActivity implements OnMa
         OrderBase.setStreet(address);
         OrderBase.setLat(lat);
         OrderBase.setLon(lon);
+        OrderBase.setOrderState("waiting");
         AsyncHttpClient client = new AsyncHttpClient();
         JSONObject jo = new JSONObject();
         try {
@@ -102,26 +122,18 @@ public class OrderConfirmationActivity extends AppCompatActivity implements OnMa
             jo.put("street",OrderBase.getStreet());
             jo.put("lat",OrderBase.getLat());
             jo.put("lon",OrderBase.getLon());
+            jo.put("restaurantName",OrderBase.getRestaurantName());
+            jo.put("state",OrderBase.getOrderState());
             JSONArray ja = new JSONArray();
             for(Order o: OrderBase.getOrders()){
                 ja.put(o.getJson());
             }
             jo.put("order", ja);
-            //params.put("order",OrderBase.getOrders());
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
         RequestParams params = new RequestParams("json", jo.toString());
-        /*params.put("menuId",OrderBase.getOrdersByPosition(0).getMenuId());
-        params.put("menuName",OrderBase.getOrdersByPosition(0).getMenuName());
-        params.put("quantity",OrderBase.getOrdersByPosition(0).getQuantity());
-        params.put("payment",OrderBase.getOrdersByPosition(0).getPayment());
-        params.put("unityCost",OrderBase.getOrdersByPosition(0).getUnityCost());
-        //String data =convert();*/
-        //String menuId,menuName,quantity,payment,unityCost;
-        //String data[]={}
-        //params.put("order",OrderBase.getOrders());
         client.post(Utils.order, params, new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response)
@@ -134,7 +146,7 @@ public class OrderConfirmationActivity extends AppCompatActivity implements OnMa
                     alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Aceptar",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
+                                    dialog.dismiss();goBack();
                                 }
                             });
                     alertDialog.show();
@@ -143,14 +155,6 @@ public class OrderConfirmationActivity extends AppCompatActivity implements OnMa
                 }
             }
         });
-    }
-
-    private  String convert() {
-
-
-        String a="menuId: ";String b="menuName: ";String c="quantity: ";String d="payment: ";String e="unityCost: ";
-        String item="{"+ a+ OrderBase.getOrdersByPosition(0).getMenuId() +"," + b +OrderBase.getOrdersByPosition(0).getMenuName()+","+ c +OrderBase.getOrdersByPosition(0).getQuantity()+"," + d +OrderBase.getOrdersByPosition(0).getPayment()+","+e+OrderBase.getOrdersByPosition(0).getUnityCost()+"}";
-        return item;
     }
 
     @Override

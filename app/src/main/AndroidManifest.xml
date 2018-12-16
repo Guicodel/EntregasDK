@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,10 +30,12 @@
         <activity
             android:name=".OwnerView2"
             android:label="@string/title_activity_owner_view2" />
-        <activity android:name=".DashBoard" />
+        <activity android:name=".DashBoard"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".OwnerActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -48,15 +51,26 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".RestaurantRegisterActivity" />
-        <activity android:name=".RestaurantPhotoActivity" />
-        <activity android:name=".RestaurantMenuActivity" />
-        <activity android:name=".MenuRegisterActivity" />
-        <activity android:name=".CustomerRestaurantActivity" />
-        <activity android:name=".CustomerMenusActivity" />
-        <activity android:name=".OrderActivity" />
-        <activity android:name=".OrderConfirmationActivity" />
-        <activity android:name=".DashboardCustomerActivity"></activity>
+        <activity android:name=".RestaurantRegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RestaurantPhotoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".RestaurantMenuActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MenuRegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomerRestaurantActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CustomerMenusActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".OrderActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".OrderConfirmationActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".DashboardCustomerActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".OrdersListActivity"
+            android:screenOrientation="portrait" ></activity>
     </application>
 
 </manifest>

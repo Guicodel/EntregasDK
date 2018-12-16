@@ -25,11 +25,6 @@ import cz.msebera.android.httpclient.Header;
 
 public class DashBoard extends AppCompatActivity implements View.OnClickListener{
 
-    private ListView LIST;
-    private ArrayList<RestaurantList> LISTINFO;
-    private CustomAdapter ADAPTER;
-    private Context root;
-
     Button OwnerOption;
     Button CustomerOption;
 
@@ -37,9 +32,6 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
     protected void onCreate(Bundle savedInstanceState) {
         StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
-        LISTINFO = new ArrayList<RestaurantList>();
-        root=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dash_board);
         loadComponents();
@@ -62,11 +54,6 @@ public class DashBoard extends AppCompatActivity implements View.OnClickListener
                 startActivity(objet);
                 break;
             case R.id.Customer_button_layout:
-                //use this customerId to make tests 5bf2c48a424bc7001118dfc4
-                String customerId = "5bf2c48a424bc7001118dfc4";
-                Intent object = new Intent(DashBoard.this,CustomerRestaurantActivity.class);
-                object.putExtra("id",customerId);
-                this.startActivity(object);
                 break;
 
         }

@@ -28,12 +28,10 @@ public class CustomAdapterMenuAdd extends BaseAdapter implements LoadImage
 {
     private Context CONTEXT;
     private ArrayList<MenuItem> LIST;
-    private TotalOrder ORDER;
-    public CustomAdapterMenuAdd(Context context,ArrayList<MenuItem> list, TotalOrder Order)
+    public CustomAdapterMenuAdd(Context context,ArrayList<MenuItem> list)
     {
         this.CONTEXT = context;
         this.LIST = list;
-        this.ORDER = Order;
     }
     @Override
     public int getCount() {

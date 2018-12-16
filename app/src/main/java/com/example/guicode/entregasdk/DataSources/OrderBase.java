@@ -12,10 +12,13 @@ public class OrderBase
     private static String Street;
     private static String Lat;
     private static String Lon;
+    private static String RestaurantName;
+    private static String OrderState;
     private static ArrayList<Order> Orders = new ArrayList<Order>();
     private OrderBase(){
 
     }
+
     public static Order getOrdersByPosition(int pos)
     {
         return Orders.get(pos);
@@ -104,5 +107,17 @@ public class OrderBase
 
     public void setOrders(ArrayList<Order> orders) {
         Orders = orders;
+    }
+    public  static void setRestaurantName(String restaurantName) {
+        RestaurantName = restaurantName;
+    }
+    public  static void setOrderState(String orderState) {
+        OrderState = orderState;
+    }
+    public static String getOrderState() {
+        return OrderState;
+    }
+    public static String getRestaurantName() {
+        return RestaurantName;
     }
 }

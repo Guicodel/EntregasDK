@@ -27,7 +27,6 @@ import cz.msebera.android.httpclient.Header;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
     private RadioGroup option;
-    //private String USER;
     Button init,signup;
     private EditText userData,passData;
     AsyncHttpClient client;
@@ -106,8 +105,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         {
 
                             try {
+                                String userId = response.getString("id");
                                 Utils.token = response.getString("token");
                                 Intent objeto = new Intent(MainActivity.this, DashboardCustomerActivity.class);
+                                objeto.putExtra("userId",userId);
                                 startActivity(objeto);
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -150,8 +151,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         {
 
                             try {
+                                String userId = response.getString("id");
                                 Utils.token = response.getString("token");
                                 Intent objeto = new Intent(MainActivity.this, DashBoard.class);
+                                objeto.putExtra("userId",userId);
                                 startActivity(objeto);
                             } catch (JSONException e) {
                                 e.printStackTrace();

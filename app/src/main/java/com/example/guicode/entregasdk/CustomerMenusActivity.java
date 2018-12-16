@@ -39,7 +39,6 @@ public class CustomerMenusActivity extends AppCompatActivity implements View.OnC
     private CustomAdapterMenuAdd ADAPTER;
     private Context root;
     private Button showOrderDetail;
-    private TotalOrder ORDER;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         restaurantName = this.getIntent().getExtras().getString("restaurantName");
@@ -48,12 +47,13 @@ public class CustomerMenusActivity extends AppCompatActivity implements View.OnC
 
         root=this;
         LISTINFO = new ArrayList<MenuItem>();
-        //createOrder();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_menus);
         OrderBase.getInstance();
         OrderBase.setRestaurantId(restaurantItemId);
         OrderBase.setCustomerId(customerId);
+        OrderBase.setRestaurantName(restaurantName);
+        OrderBase.setOrderState(null);
         loadComponents();
         loadDataFromApi();
     }
@@ -63,10 +63,6 @@ public class CustomerMenusActivity extends AppCompatActivity implements View.OnC
         super.onResume();
         //LISTINFO.clear();
         //loadDataFromApi();
-    }
-    public void createOrder()
-    {
-        ORDER = new TotalOrder(customerId,restaurantItemId);
     }
     private void loadDataFromApi() {
         AsyncHttpClient client= new AsyncHttpClient();
@@ -102,7 +98,7 @@ public class CustomerMenusActivity extends AppCompatActivity implements View.OnC
                                 e.printStackTrace();
                             }
                         }
-                        ADAPTER=new CustomAdapterMenuAdd(root,LISTINFO,ORDER);
+                        ADAPTER=new CustomAdapterMenuAdd(root,LISTINFO);
                         LIST.setAdapter(ADAPTER);
                     }
                 }

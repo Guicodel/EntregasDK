@@ -92,7 +92,7 @@ public class CustomerRestaurantActivity extends AppCompatActivity implements Ada
         String idItem = this.LISTINFO.get(position).getId();
         String restaurantName = this.LISTINFO.get(position).getName();
         //use this customerID to make test 5bf2c48a424bc7001118dfc4
-        String customerId = "5bf2c48a424bc7001118dfc4";
+        String customerId = this.getIntent().getExtras().getString("customerId");
         Intent object = new Intent(CustomerRestaurantActivity.this,CustomerMenusActivity.class);
         object.putExtra("restaurantId",idItem);
         object.putExtra("restaurantName",restaurantName);
