@@ -30,9 +30,9 @@
             android:name=".OwnerView2"
             android:label="@string/title_activity_owner_view2" />
         <activity android:name=".DashBoard" />
-        <activity android:name=".OwnerActivity"
-            android:launchMode="singleTask"
-            />
+        <activity
+            android:name=".OwnerActivity"
+            android:launchMode="singleTask" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -55,7 +55,8 @@
         <activity android:name=".CustomerRestaurantActivity" />
         <activity android:name=".CustomerMenusActivity" />
         <activity android:name=".OrderActivity" />
-        <activity android:name=".OrderConfirmationActivity"></activity>
+        <activity android:name=".OrderConfirmationActivity" />
+        <activity android:name=".DashboardCustomerActivity"></activity>
     </application>
 
 </manifest>

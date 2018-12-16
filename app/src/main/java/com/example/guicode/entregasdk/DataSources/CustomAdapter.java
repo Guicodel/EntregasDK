@@ -52,11 +52,12 @@ public class CustomAdapter extends BaseAdapter implements LoadImage{
         TextView phone=(TextView)convertView.findViewById(R.id.restaurant_phone_api_layout);
         TextView nit=(TextView)convertView.findViewById(R.id.restaurant_nit_api_layout);
         TextView street=(TextView)convertView.findViewById(R.id.restaurant_street_api_layout);
-        name.setText(this.LIST.get(position).getName());
+
 
         phone.setText(this.LIST.get(position).getPhone());
         nit.setText(this.LIST.get(position).getNit());
         street.setText(this.LIST.get(position).getStreet());
+        name.setText(this.LIST.get(position).getName());
         ImageView img = (ImageView)convertView.findViewById(R.id.ImageRestaurant_layout);
         ThreadImage threadImage = new ThreadImage();
         threadImage.setLoadImage(img,this);

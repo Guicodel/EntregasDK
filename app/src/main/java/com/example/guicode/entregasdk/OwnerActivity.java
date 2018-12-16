@@ -32,27 +32,30 @@ public class OwnerActivity extends AppCompatActivity implements View.OnClickList
     private CustomAdapter ADAPTER;
     private Context root;
     private Button restaurantRegistration;
-
+    private boolean load;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
+        load = false;
         LISTINFO = new ArrayList<RestaurantList>();
         root=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_owner);
-        loadComponents();
-
+        ADAPTER=new CustomAdapter(root,LISTINFO);
     }
+
     @Override
     protected void onResume()
     {
+
         super.onResume();
         LISTINFO.clear();
+        ADAPTER.notifyDataSetChanged();
         loadDataFromApi();
-
+        loadComponents();
+        //loadComponents();
     }
     private void loadDataFromApi()
     {
@@ -90,7 +93,7 @@ public class OwnerActivity extends AppCompatActivity implements View.OnClickList
                         }
 
                         ADAPTER=new CustomAdapter(root,LISTINFO);
-                        LIST.setAdapter(ADAPTER);
+                        LIST.setAdapter(ADAPTER);load =true;
                     }
                 }
         );
@@ -120,12 +123,14 @@ public class OwnerActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String idItem = this.LISTINFO.get(position).getId();
-        String restaurantName = this.LISTINFO.get(position).getName();
-        Intent object = new Intent(OwnerActivity.this,RestaurantMenuActivity.class);
-        object.putExtra("restaurantId",idItem);
-        object.putExtra("restaurantName",restaurantName);
-        this.startActivity(object);
+        if(load) {
+            String idItem = this.LISTINFO.get(position).getId();
+            String restaurantName = this.LISTINFO.get(position).getName();
+            Intent object = new Intent(OwnerActivity.this, RestaurantMenuActivity.class);
+            object.putExtra("restaurantId", idItem);
+            object.putExtra("restaurantName", restaurantName);
+            this.startActivity(object);
+        }
 
     }
 }

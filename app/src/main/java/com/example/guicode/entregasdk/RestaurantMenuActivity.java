@@ -46,8 +46,9 @@ public class RestaurantMenuActivity extends AppCompatActivity implements View.On
         root=this;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant_menu);
-        loadComponents();
+
         //loadDataFromApi();
+
 
     }
     @Override
@@ -56,6 +57,7 @@ public class RestaurantMenuActivity extends AppCompatActivity implements View.On
         super.onResume();
         LISTINFO.clear();
         loadDataFromApi();
+        loadComponents();
     }
     private void loadDataFromApi() {
         AsyncHttpClient client= new AsyncHttpClient();
